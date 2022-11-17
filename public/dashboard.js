@@ -1,4 +1,3 @@
-alert("Hi You");
 const navBar = document.getElementById("nav-bar");
 const menu = document.getElementById("menu");
 const closeMenu = document.getElementById("close-menu");

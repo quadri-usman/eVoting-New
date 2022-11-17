@@ -7,8 +7,8 @@ class Poll {
     this.root.insertAdjacentHTML(
       "afterbegin",
       `
-            <div class="poll__title">${title}</div>
-        `
+          <div class="poll__title">${title}</div>
+      `
     );
 
     this._refresh();
@@ -27,18 +27,18 @@ class Poll {
       const fragment = template.content;
 
       template.innerHTML = `
-                <div class="poll__option ${
-                  this.selected == option.label ? "poll__option--selected" : ""
-                }">
-                    <div class="poll__option-fill"></div>
-                    <div class="poll__option-info" id="voted">
-                        <span class="poll__label">${option.label}</span>
-                        <span class="poll__percentage">${
-                          option.percentage
-                        }%</span>
-                    </div>
-                </div>
-            `;
+              <div class="poll__option ${
+                this.selected == option.label ? "poll__option--selected" : ""
+              }">
+                  <div class="poll__option-fill"></div>
+                  <div class="poll__option-info" id="voted">
+                      <span class="poll__label">${option.label}</span>
+                      <span class="poll__percentage">${
+                        option.percentage
+                      }%</span>
+                  </div>
+              </div>
+          `;
 
       if (!this.selected) {
         fragment

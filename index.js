@@ -12,6 +12,10 @@ var express = require("express"),
 const user = require("./models/user");
 const connectDB = require("./servers");
 connectDB();
+// Variables for voting platform
+const fs = require("fs").promises;
+const path = require("path");
+const dataFile = path.join(__dirname, "data.json");
 
 var app = express();
 app.set("view engine", "ejs");
@@ -206,6 +210,31 @@ app.post("/report", (req, res) => {
     // res.status(200).json({ message: "Thanks" });
     res.redirect("/dashboard");
   });
+});
+
+// Voting Platform Routing
+app.get("/poll", async (req, res) => {
+  let data = JSON.parse(await fs.readFile(dataFile, "utf-8"));
+  const totalVotes = Object.values(data).reduce((total, n) => (total += n), 0);
+
+  data = Object.entries(data).map(([label, votes]) => {
+    return {
+      label,
+      percentage: ((100 * votes) / totalVotes || 0).toFixed(0),
+    };
+  });
+
+  res.json(data);
+});
+
+app.post("/poll", async (req, res) => {
+  const data = JSON.parse(await fs.readFile(dataFile, "utf-8"));
+
+  data[req.body.add]++;
+
+  await fs.writeFile(dataFile, JSON.stringify(data));
+
+  res.end();
 });
 
 app.get("*", function (req, res) {
