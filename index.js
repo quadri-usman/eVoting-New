@@ -138,7 +138,6 @@ app.get("/ninVerify", isLoggedIn, (req, res) => {
   res.render("ninVerify");
 });
 app.post("/ninVerify", async (req, res) => {
-  console.log("I am");
   const settings = {
     method: "POST",
     headers: {
@@ -157,22 +156,21 @@ app.post("/ninVerify", async (req, res) => {
       "https://sandbox.myidentitypass.com/api/v2/biometrics/merchant/data/verification/nin_wo_face",
       settings
     );
-
-    const data = await fetchResponse.json();
+    let data = await fetchResponse.json();
     // res.send(data.detail);
     if (data.status) {
-      // res.redirect("/dashboard");
-      // req.flash("successfully change password");
-      res.send(data.detail);
+      res.status(200).json(data);
     } else {
-      res.send({ message: data.detail });
+      res.send(data.detail);
     }
     console.log(data);
-    // return data;
   } catch (e) {
     return e;
   }
 });
+// app.get("/verified", (req, res) => {
+//   res.render("verified", { data: data });
+// });
 // Logout Route
 app.get("/logout", function (req, res) {
   req.logout(function (err) {
