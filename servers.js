@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 const app = express();
 require("dotenv").config();
 // const URI = "mongodb://localhost:27017/eVote_app";
-const { URI } = process.env;
+const { MONGODB_URI } = process.env;
 const connectDB = async () => {
   await mongoose.connect(
-    URI,
+    MONGODB_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
