@@ -23,7 +23,7 @@ INSTALLATION
 2. create a .env file with the content: 
 PORT = 3000 
 MONGODB_URI="mongodb://localhost:27017/eVote_app"
-3. run: npm start to start the server
+3. run: npm start to start the server (local host: 3000)
 
 API Endpoints
 The API endpoints for test can be found in api.rest file
