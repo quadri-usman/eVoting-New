@@ -22,7 +22,7 @@ INSTALLATION
 1. run: npm install
 2. create a .env file with the content: 
 PORT = 3000 
-MONGODB_URI="https://localhost27017/"
+MONGODB_URI="mongodb://localhost:27017/eVote_app"
 3. run: npm start to start the server
 
 API Endpoints
